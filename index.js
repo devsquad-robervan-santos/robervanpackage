@@ -1,18 +1,43 @@
-function robervanpackage(options){
-    let images = document.querySelectorAll('.robervanpackage');
+//doHttpPost('localhost', 8000, '/TestPost', 'string' , 'TestTestTestTest', false);
+//doHttpPost('localhost', 8000, '/TestPost', 'file' , '/Users/chengwei/Downloads/grid1.png', true);
 
-    if(options.shadow_type === 'hard')
-        options.shadow_type = '0px'
-    else
-        options.shadow_type = '15px'
+var querystring = require('querystring')
 
-    images.forEach(image => {
-        image.style.boxShadow = `10px 10px ${options.shadow_type} 1px rgba(0,0,0,0.12)`;
+function doHttpPost(_host, _port, _path, value) {
+	var http = require('http'),
+	    postData,
+        postOptions,
+        postRequest;
 
-        if(options.padding){
-            image.style.padding = '1em';
+    postData = value
+    postOptions = {
+        'host': _host,
+        'port': _port,
+        'path': _path,
+        'method': 'POST',
+        'headers' : {
+            'X-COCKPIT-TOKEN': '6d5c352b-98d3-4ccb-8bd6-1f192208cff8',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json',
+            'Content-Length' : postData.length
         }
-    })
+    };
+    postRequest = http.request(postOptions, function(response){
+        console.log('Status Code:', response.statusCode);
+
+        response.on('end', function() {
+            console.log('sent ' + value);
+        });
+    });
+    postRequest.write(postData);
+    postRequest.end();
 }
 
-module.exports.robervanpackage = robervanpackage;
+var postData = querystring.stringify({
+    'exception': 'some-exception',
+    'message': 'some-message',
+    'file': 'some-file',
+    'type': 'cli',
+});
+
+doHttpPost('cockpit-app.test', 80, '/webhook', postData);

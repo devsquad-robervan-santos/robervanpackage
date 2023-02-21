@@ -1,0 +1,19 @@
+{
+  "name": "robervanpackage",
+  "version": "1.0.0",
+  "description": "package test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devsquad-robervan-santos/robervanpackage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devsquad-robervan-santos/robervanpackage/issues"
+  },
+  "homepage": "https://github.com/devsquad-robervan-santos/robervanpackage#readme"
+}
