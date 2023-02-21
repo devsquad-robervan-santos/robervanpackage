@@ -21,6 +21,8 @@ const options = {
     }
 };
 
+function doHttpPost(){
+
 const req = http.request(options, (res) => {
     console.log('Status Code:', res.statusCode);
 
@@ -33,8 +35,8 @@ req.on("error", (err) => {
 req.write( data);
 req.end();
 
-/* function robervanpackage(){
+
 
 }
 
-module.exports.robervanpackage = robervanpackage; */
+module.exports.doHttpPost = doHttpPost;
